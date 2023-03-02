@@ -1,0 +1,16 @@
+{
+  "name": "personalrestfulserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "PersonalRESTfulServer.js",
+  "scripts": {
+    "start": "nodemon PersonalRESTfulServer.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.21",
+    "pg": "^8.9.0"
+  }
+}
