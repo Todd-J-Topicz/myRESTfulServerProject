@@ -13,7 +13,7 @@ const pool = require('./dbConn');
             ('Massive Entertainment')`,
             (err, data) => {
                 if (err){
-                    console.log("INSERT FAILED")
+                    console.log("INSERT FAILED on studio")
                 } else {
                     console.log("INSERT SUCCESSFUL")
                 }
@@ -35,7 +35,7 @@ const pool = require('./dbConn');
             ('The Elder Scrolls V: Skyrim', 2011, 2)`,
             (err, data) => {
                 if (err){
-                    console.log("INSERT FAILED")
+                    console.log("INSERT FAILED on games")
                 } else {
                     console.log("INSERT SUCCESSFUL")
                 }
