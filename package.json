@@ -1,18 +1,22 @@
 {
   "name": "myrestfulserverproject",
   "version": "1.0.0",
-  "description": "",
+  "description": "A small server app to demo CRUD over an HTTP API request",
   "main": "PersonalRESTfulServer.js",
   "scripts": {
-    "start": "nodemon PersonalRESTfulServer.js"
+    "start": "node PersonalRESTfulServer.js",
+    "dev": "nodemon PersonalRESTfulServer.js",
+    "migrate": "node migration.js",
+    "seed": "node seed.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Todd-J-Topicz/myRESTfulServerProject"
   },
-  "author": "",
+  "author": "Todd Topicz",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "express": "^4.18.2",
     "nodemon": "^2.0.21",
     "pg": "^8.9.0",
