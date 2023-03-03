@@ -2,8 +2,11 @@ const { Pool } = require('pg');
 const DATABASE_URL = process.env.DATABASE_URL;
 const pool = require('./dbConn');
 
+pool.query('DROP TABLE IF EXISTS studio');
+pool.query('DROP TABLE IF EXISTS games');
+
 //run migration SQL:
-pool.query(`CREATE TABLE IF NOT EXISTS studio (
+pool.query(`CREATE TABLE studio (
     id SERIAL PRIMARY KEY,
 	name VARCHAR (100) NOT NULL)`, (err, data) => {
         if (err) {
@@ -14,7 +17,7 @@ pool.query(`CREATE TABLE IF NOT EXISTS studio (
     }
 );
 
-pool.query(`CREATE TABLE IF NOT EXISTS games (
+pool.query(`CREATE TABLE games (
     id SERIAL PRIMARY KEY,
 	name VARCHAR (100) NOT NULL,
     year INT NOT NULL,
