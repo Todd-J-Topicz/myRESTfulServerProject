@@ -19,7 +19,7 @@ pool.query(`CREATE TABLE IF NOT EXISTS games (
 	name VARCHAR (100) NOT NULL,
     year INT NOT NULL,
 	studio_id INT NOT NULL, 
-    FOREIGN KEY (studio_id) REFERENCES studio.id)`, (err, data) => {
+    FOREIGN KEY (studio_id) REFERENCES studio(id) ON DELETE CASCADE)`, (err, data) => {
         if (err) {
             console.log("CREATE TABLE games FAILED")
         } else {
