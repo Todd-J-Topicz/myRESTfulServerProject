@@ -1,16 +1,21 @@
 {
-  "name": "personalrestfulserver",
+  "name": "myrestfulserverproject",
   "version": "1.0.0",
   "description": "",
   "main": "PersonalRESTfulServer.js",
   "scripts": {
     "start": "nodemon PersonalRESTfulServer.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Todd-J-Topicz/myRESTfulServerProject"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
     "nodemon": "^2.0.21",
-    "pg": "^8.9.0"
+    "pg": "^8.9.0",
+    "pool": "^0.4.1"
   }
 }
