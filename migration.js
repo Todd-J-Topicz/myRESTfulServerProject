@@ -3,7 +3,7 @@ const DATABASE_URL = process.env.DATABASE_URL;
 const pool = require('./dbConn');
 
 //run migration SQL:
-pool.query(`CREATE TABLE IF NOT EXISTS studios (
+pool.query(`CREATE TABLE IF NOT EXISTS studio (
     id SERIAL PRIMARY KEY,
 	name VARCHAR (100) NOT NULL)`, (err, data) => {
         if (err) {

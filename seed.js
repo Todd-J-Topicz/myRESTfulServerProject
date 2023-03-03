@@ -1,9 +1,9 @@
 const { Pool } = require('pg');
 const pool = require('./dbConn');
 
-pool.query('SELECT COUNT(*) FROM studio', (err,data) => {
+pool.query('SELECT COUNT(*) FROM studio', (err, data) => {
     console.log("made it here");
-    console.log(data.rows[0]['count']);
+    console.log(data);
 
     if (data.rows[0]['count'] == 0){
         pool.query(`INSERT INTO studio (name) VALUES 
