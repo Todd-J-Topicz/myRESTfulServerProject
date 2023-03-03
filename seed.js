@@ -5,7 +5,7 @@ pool.query('SELECT COUNT(*) FROM studio', (err, data) => {
     console.log("made it here");
     console.log(data);
 
-    if (data.rows[0]['count'] == 0){
+    if (data.rows[0]['count'] == '0'){
         pool.query(`INSERT INTO studio (name) VALUES 
             ('Activision'),
             ('Bethesda Softworks'),
@@ -25,7 +25,7 @@ pool.query('SELECT COUNT(*) FROM studio', (err, data) => {
 pool.query('SELECT COUNT(*) FROM games', (err,data) => {
     console.log(data.rows[0]['count']);
 
-    if (data.rows[0]['count'] == 0){
+    if (data.rows[0]['count'] == '0'){
         pool.query(`INSERT INTO games (name, year, studio_id) VALUES 
             ('Modern Warfare 2', 2022, 1),
             ('Fallout 76', 2018, 2),
