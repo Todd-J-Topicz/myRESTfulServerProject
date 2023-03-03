@@ -1,11 +1,11 @@
 const { Pool } = require('pg');
 const pool = require('./dbConn');
 
-pool.query('SELECT COUNT(*) FROM studio', (err, data) => {
+pool.query('SELECT COUNT(*) FROM studio', (err, Result) => {
     console.log("made it here");
-    console.log(data);
+    console.log(Result);
 
-    if (data.rows[0]['count'] == '0'){
+    if (Result.rows[0]['count'] == '0'){
         pool.query(`INSERT INTO studio (name) VALUES 
             ('Activision'),
             ('Bethesda Softworks'),
@@ -22,10 +22,10 @@ pool.query('SELECT COUNT(*) FROM studio', (err, data) => {
     }
 })
 
-pool.query('SELECT COUNT(*) FROM games', (err,data) => {
-    console.log(data.rows[0]['count']);
+pool.query('SELECT COUNT(*) FROM games', (err, Result) => {
+    console.log(Result.rows[0]['count']);
 
-    if (data.rows[0]['count'] == '0'){
+    if (Result.rows[0]['count'] == '0'){
         pool.query(`INSERT INTO games (name, year, studio_id) VALUES 
             ('Modern Warfare 2', 2022, 1),
             ('Fallout 76', 2018, 2),

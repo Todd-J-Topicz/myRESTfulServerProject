@@ -2,6 +2,11 @@ const { Pool } = require('pg');
 const DATABASE_URL = process.env.DATABASE_URL;
 const pool = require('./dbConn');
 
+// const pool = new Pool({
+//     connectionString: DATABASE_URL,
+//     ...dbConfig,
+//   });
+
 pool.query('DROP TABLE IF EXISTS games');
 
 //run migration SQL:
