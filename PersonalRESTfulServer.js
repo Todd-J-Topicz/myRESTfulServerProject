@@ -1,3 +1,7 @@
+const dotenv = require('dotenv');
+dotenv.config();
+console.log(process.env);
+
 //SETUP DEPENDECIES:
 const express = require('express');
 const { Pool } = require('pg');
@@ -8,12 +12,14 @@ app.use(express.json());
 const { listenerCount } = require('stream');
 
 const pool = new Pool ({
-    user: 'postgres',
-    host: '127.0.0.1',
-    database: 'RESTfulServer',
-    password: 'password',
-    port: 5432,
+    user: process.env.POSTGRES_USER || 'postgres',
+    host: process.env.HOST || 'localhost',
+    database: process.env.POSTGRES_DB || 'RESTfulServer',
+    password: process.env.POSTGRES_PASSWORD || 'password',
+    port: process.env.PORT || 5432,
 });
+
+
 
 //Query with "/studio" request:
 app.get('/api/studio' , (request, response, next) => {
@@ -78,7 +84,7 @@ app.get('/api/games/:id', function(req, res, next){
 //CHECKS FOR ANYTHING OTHER THAN "PETS" AND SENDS ERROR:
 app.get("/api/:word/", function (req, res){
     const word = req.params.word;
-    res.status(505).send(`NOT FOUND!! - 505 error - /${word}/ does not exist`);
+    res.status(404).send(`NOT FOUND!! - 505 error - /${word}/ does not exist`);
 });
 
 //manufacturer table  one-> many 
