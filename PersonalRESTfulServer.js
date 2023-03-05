@@ -16,16 +16,6 @@ const { listenerCount } = require('stream');
 const dbConn = require('./dbConn');
 const pool = dbConn.getPool();
 
-// const pool = new Pool ({
-//     user: process.env.POSTGRES_USER || 'postgres',
-//     host: process.env.HOST || 'localhost',
-//     database: process.env.POSTGRES_DB || 'RESTfulServer',
-//     password: process.env.POSTGRES_PASSWORD || 'password',
-//     port: process.env.PORT || 5432,
-// });
-
-
-
 //Query with "/studio" request:
 app.get('/api/studio' , (request, response, next) => {
     //console.log("made it inside .get");
@@ -86,14 +76,11 @@ app.get('/api/games/:id', function(req, res, next){
     })
 })
 
-//CHECKS FOR ANYTHING OTHER THAN "PETS" AND SENDS ERROR:
+//CHECKS FOR ANYTHING OTHER THAN "STUDIO" OR "GAMES" AND SENDS ERROR:
 app.get("/api/:word/", function (req, res){
     const word = req.params.word;
     res.status(404).send(`NOT FOUND!! - 505 error - /${word}/ does not exist`);
 });
-
-//manufacturer table  one-> many 
-//create a new car - will need manufacturer_id foreign key to link the car to a manufacturer
 
 app.post('/api/games/', (req, res, next) =>{
     //console.log("made it inside post request");
@@ -150,9 +137,6 @@ app.patch('/api/games/:id', (req, res, next) => {
     })
 })
 
-
-
-
 app.delete('/api/games/:id', (req, res, next) => {
     const id = Number.parseInt(req.params.id);
 
@@ -176,7 +160,6 @@ app.post('/api/studio/', (req, res, next) =>{
     //console.log("made it inside post request");
     const name = req.body.name;
    
-
     if (!name){
         return res.status(400).send("Error in post data, or insufficient data provided for post");
     } 
@@ -217,9 +200,6 @@ app.patch('/api/studio/:id', (req, res, next) => {
 
     })
 })
-
-
-
 
 app.delete('/api/studio/:id', (req, res, next) => {
     const id = Number.parseInt(req.params.id);
