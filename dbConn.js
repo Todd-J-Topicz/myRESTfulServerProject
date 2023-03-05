@@ -41,3 +41,4 @@ function getPool(){
 
 console.log("right before module.exports");
 module.exports = { getPool };
+console.log("module.exports COMPLETED")
