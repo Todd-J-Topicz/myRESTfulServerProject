@@ -35,6 +35,8 @@ function runMigrations(pool, callback){
                 } else {
                     console.log("games CREATE TABLE successful")
                 }
+                done();
+                callback();
             }
         );
     })
