@@ -1,3 +1,5 @@
+'use strict';
+
 const dotenv = require('dotenv');
 dotenv.config();
 console.log(process.env);
@@ -11,13 +13,16 @@ const port = 8000;
 app.use(express.json());
 const { listenerCount } = require('stream');
 
-const pool = new Pool ({
-    user: process.env.POSTGRES_USER || 'postgres',
-    host: process.env.HOST || 'localhost',
-    database: process.env.POSTGRES_DB || 'RESTfulServer',
-    password: process.env.POSTGRES_PASSWORD || 'password',
-    port: process.env.PORT || 5432,
-});
+const dbConn = require('./dbConn');
+const pool = dbConn.getPool();
+
+// const pool = new Pool ({
+//     user: process.env.POSTGRES_USER || 'postgres',
+//     host: process.env.HOST || 'localhost',
+//     database: process.env.POSTGRES_DB || 'RESTfulServer',
+//     password: process.env.POSTGRES_PASSWORD || 'password',
+//     port: process.env.PORT || 5432,
+// });
 
 
 
