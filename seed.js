@@ -42,7 +42,9 @@ function runSeeder(pool, callback){
         )
 
         done();
+        console.log("stuck after done func")
         callback();
+        console.log("stuck after callback func")
     })
 
 
