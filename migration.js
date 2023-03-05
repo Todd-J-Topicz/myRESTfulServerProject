@@ -12,6 +12,7 @@ function runMigrations(pool, callback){
         }
         //RUN migration SQL:
         pool.query('DROP TABLE IF EXISTS games');
+        pool.query('DROP TABLE IF EXISTS studio');
 
 
         pool.query(`CREATE TABLE IF NOT EXISTS studio (
