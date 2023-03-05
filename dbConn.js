@@ -22,6 +22,7 @@ function getPool(){
 
     //if DATABASE_URL is set as an environmental variable (from Render), use that
     //otherwise, use the config object we defined above:
+    console.log("Right before pool variable")
     let pool = null;
     if (DATABASE_URL){
         pool = new Pool ({
