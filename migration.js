@@ -1,6 +1,5 @@
 const { Pool } = require('pg');
 const dbConn = require('./dbConn');
-const DATABASE_URL = process.env.DATABASE_URL;
 const pool = dbConn.getPool();
 
 function runMigrations(pool, callback){
