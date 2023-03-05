@@ -38,4 +38,5 @@ function getPool(){
     return pool;    
 }
 
+console.log("right before module.exports");
 module.exports = { getPool };
