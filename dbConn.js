@@ -10,6 +10,7 @@ const POSTGRES_USER = process.env.POSTGRES_USER || 'postgres';
 const DATABASE_URL = process.env.DATABASE_URL;
 
 function getPool(){
+    console.log("inside dbConn file, inside getPool()")
     //object with connection values we can pass to new Pool() to connect to DB:
     const dbConfig = {
         user: POSTGRES_USER,
