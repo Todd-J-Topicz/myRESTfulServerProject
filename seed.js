@@ -1,4 +1,4 @@
-console.log("Made it inside seed.js");
+//console.log("Made it inside seed.js");
 
 const { Pool } = require('pg');
 const dbConn = require('./dbConn');
@@ -44,9 +44,8 @@ function runSeeder(pool, callback){
         )
 
         done();
-        console.log("stuck after done func")
         callback();
-        console.log("stuck after callback func")
+        
     })
 
 

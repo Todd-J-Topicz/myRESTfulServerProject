@@ -10,7 +10,6 @@ const POSTGRES_USER = process.env.POSTGRES_USER || 'postgres';
 const DATABASE_URL = process.env.DATABASE_URL;
 
 function getPool(){
-    console.log("inside dbConn file, inside getPool()")
     //object with connection values we can pass to new Pool() to connect to DB:
     const dbConfig = {
         user: POSTGRES_USER,
@@ -22,10 +21,8 @@ function getPool(){
 
     //if DATABASE_URL is set as an environmental variable (from Render), use that
     //otherwise, use the config object we defined above:
-    console.log("Right before pool variable")
     let pool = null;
     if (DATABASE_URL){
-        console.log("inside IF statement");
         pool = new Pool ({
             connectionString: process.env.DATABASE_URL,
             ssl: {
@@ -33,12 +30,10 @@ function getPool(){
             }
         })
     } else {
-        console.log("inisde ELSE statement dbConn")
         pool = new Pool(dbConfig);
     }
     return pool;    
 }
 
-console.log("right before module.exports");
+
 module.exports = { getPool };
-console.log("module.exports COMPLETED")

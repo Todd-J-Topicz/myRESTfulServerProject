@@ -44,11 +44,9 @@ function runMigrations(pool, callback){
 
 };
 
-console.log("stuck here in migration");
 runMigrations(pool, () => {
     //migrations are complete, we can close the pool
     //close connection:
-    console.log("stuck inside runMigrations func");
     pool.end();
 })
 
