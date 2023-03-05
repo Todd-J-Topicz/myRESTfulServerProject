@@ -172,6 +172,73 @@ app.delete('/api/games/:id', (req, res, next) => {
     })    
 });
 
+app.post('/api/studio/', (req, res, next) =>{
+    //console.log("made it inside post request");
+    const name = req.body.name;
+   
+
+    if (!name){
+        return res.status(400).send("Error in post data, or insufficient data provided for post");
+    } 
+
+    pool.query('INSERT INTO studio (name) VALUES ($1) RETURNING *;', [name], (err,result) => {
+        if (err){
+            return next({})
+        }
+
+        let studioInfo = result.rows[0];
+        res.send(gameInfo);
+    })
+})
+
+app.patch('/api/studio/:id', (req, res, next) => {
+    const id = Number.parseInt(req.params.id);
+    const name = req.body.name;
+
+    pool.query('SELECT * FROM studio WHERE id=$1', [id], (err, result, next) =>{
+        if (err){
+            return next({});
+        }
+        
+        let studio = result.rows[0];
+
+        if (!studio){
+            res.send("No studio detected")
+        }
+
+        const updatedName = name || studio.name;
+       
+        pool.query('UPDATE studio SET name=$1 WHERE id=$4 RETURNING *', [updatedName, id], (err, result) =>{
+            if (err){
+                res.send("There was an error updating the studio table")
+            }
+           
+        })
+
+    })
+})
+
+
+
+
+app.delete('/api/studio/:id', (req, res, next) => {
+    const id = Number.parseInt(req.params.id);
+
+    pool.query('DELETE FROM studio WHERE id=$1 RETURNING*', [id], (err,data) => {
+        if (err){
+            res.status(404).send("There was an error with your SQL query for DELETION.")
+        }
+
+        const deleted = data.rows[0];
+
+        if (deleted){
+            res.send(deleted);
+        } else {
+            res.send("This ID has not been deleted.")
+        }
+        
+    })    
+});
 
 
 
