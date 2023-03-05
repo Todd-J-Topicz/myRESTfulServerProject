@@ -25,6 +25,7 @@ function getPool(){
     console.log("Right before pool variable")
     let pool = null;
     if (DATABASE_URL){
+        console.log("inside IF statement");
         pool = new Pool ({
             connectionString: process.env.DATABASE_URL,
             ssl: {
