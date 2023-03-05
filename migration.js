@@ -3,7 +3,7 @@ const dbConn = require('./dbConn');
 const DATABASE_URL = process.env.DATABASE_URL;
 const pool = dbConn.getPool();
 
-function runMigration(pool, callback){
+function runMigrations(pool, callback){
     //Connect to DB:
     pool.connect((err, client, done) => {
         if (err){
@@ -42,7 +42,8 @@ function runMigration(pool, callback){
 
 };
 
-runMigration(pool, () => {
+console.log("stuck here in migration");
+runMigrations(pool, () => {
     //migrations are complete, we can close the pool
     //close connection:
     pool.end();
