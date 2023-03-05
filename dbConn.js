@@ -32,6 +32,7 @@ function getPool(){
             }
         })
     } else {
+        console.log("inisde ELSE statement dbConn")
         pool = new Pool(dbConfig);
     }
     return pool;    
