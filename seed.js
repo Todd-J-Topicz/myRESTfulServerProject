@@ -1,11 +1,16 @@
 const { Pool } = require('pg');
-const pool = require('./dbConn');
+const dbConn = require('./dbConn');
+const pool = dbConn.getPool();
 
-// pool.query('SELECT COUNT(*) FROM studio', (err, Result) => {
-//     console.log("made it here");
-//     console.log(Result);
+function runSeeder(pool, callback){
+    pool.connect((err, client, done) => {
+        if (err) {
+            console.log("Failed to connect to the database");
+            console.log(err);
+            return done();
+        }
 
-//     if (Result.rows[0]['count'] == '0'){
+        //Run SEED SQL:
         pool.query(`INSERT INTO studio (name) VALUES 
             ('Activision'),
             ('Bethesda Softworks'),
@@ -19,13 +24,7 @@ const pool = require('./dbConn');
                 }
             }
         )
-//     }
-// })
 
-// pool.query('SELECT COUNT(*) FROM games', (err, Result) => {
-//     console.log(Result.rows[0]['count']);
-
-//     if (Result.rows[0]['count'] == '0'){
         pool.query(`INSERT INTO games (name, year, studio_id) VALUES 
             ('Modern Warfare 2', 2022, 1),
             ('Fallout 76', 2018, 2),
@@ -41,10 +40,19 @@ const pool = require('./dbConn');
                 }
             }
         )
-//     }
-// })
+
+        done();
+        callback();
+    })
 
 
+}
 
-//close connection:
+runSeeder(pool, () => {
+    //close connection:
 pool.end();
+});  
+
+
+
+
