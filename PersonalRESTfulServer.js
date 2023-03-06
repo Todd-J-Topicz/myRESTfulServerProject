@@ -6,11 +6,13 @@ console.log(process.env);
 
 //SETUP DEPENDECIES:
 const express = require('express');
+const cors = require('cors');
 const { Pool } = require('pg');
 
 const app = express();
 const port = 8000;
 app.use(express.json());
+app.use(cors());
 const { listenerCount } = require('stream');
 
 const dbConn = require('./dbConn');
