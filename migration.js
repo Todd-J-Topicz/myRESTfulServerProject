@@ -15,7 +15,7 @@ function runMigrations(pool, callback){
                 
         pool.query(`CREATE TABLE studio (
             id SERIAL PRIMARY KEY,
-	        name VARCHAR (100) NOT NULL)`, (err, data) => {
+	        name VARCHAR (100) NOT NULL`), (err, data) => {
                 if (err) {
                     console.log("CREATE TABLE studio FAILED")
                 } else {
@@ -28,7 +28,7 @@ function runMigrations(pool, callback){
             name VARCHAR (100) NOT NULL,
             year INT NOT NULL,
             studio_id INT NOT NULL, 
-            FOREIGN KEY (studio_id) REFERENCES studio(id) ON DELETE CASCADE)`, (err, data) => {
+            FOREIGN KEY (studio_id) REFERENCES studio(id) ON DELETE CASCADE`), (err, data) => {
                 if (err) {
                     console.log("CREATE TABLE games FAILED")
                 } else {
