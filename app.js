@@ -66,20 +66,22 @@ function gameSearch(){
         for (let x = 0; x < data.length; x++){
             let $span = $('<span class="game-card"></span>');
 
-            let $h2 = $('<h2 class="game-name"></h2>');
+            let $h2 = $('<h3 class="game-name" style="font-size: 35px"></h3>');
             $($h2).text(data[x].name);
             $span.append($h2);
 
-            let $h3 = $('<h3 class="game-year"></h3');
+            let $h3 = $('<h4 class="game-year" style="font-size: 20px"></h4');
             $($h3).text(data[x].year);
             $h2.append($h3);
 
-            let $h4 = $('<h4 class="game-studio"></h4>');
+            let $h4 = $('<h4 class="game-studio" style="font-size: 20px"></h4>');
             $($h4).text(data[x].studio_name);
             $h2.append($h4);
 
             $span.appendTo($("#results"));
         }
+
+        //Place Game data into a toolbar, using DATA from above
 
     });
 };
@@ -150,6 +152,8 @@ function studioAdd(){
 
 
 function gameDelete(){
+  //Have to do an AJAX GET to games table, get data and map selected game to proper game_id to run delete below:
+
   let userInput = $("#gameInput").val();
   console.log(userInput);
 

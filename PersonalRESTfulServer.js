@@ -140,6 +140,9 @@ app.patch('/api/games/:id', (req, res, next) => {
 })
 
 app.delete('/api/games/:id', (req, res, next) => {
+    pool.query('SELECT * FROM games RETURNING*');
+    console.log("query worked, games table is available")
+
     const id = Number.parseInt(req.params.id);
 
     pool.query('DELETE FROM games WHERE id=$1 RETURNING*', [id], (err,data) => {
