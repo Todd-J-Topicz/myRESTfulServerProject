@@ -52,7 +52,7 @@ app.get('/api/studio/:id', function(req, res, next){
 app.get('/api/games/', function(req, res, next){
     const id = Number.parseInt(req.params.id);
 
-    pool.query(`SELECT * FROM games`, (err,result) => {
+    pool.query(`SELECT *, studio.name FROM games JOIN studio ON games.studio_id = studio.name `, (err,result) => {
         if (err){
             return next({})
         }

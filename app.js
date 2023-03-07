@@ -25,6 +25,16 @@ $studioAdd.click(function(){
   studioAdd();
 })
 
+$gameDelete.click(function(){
+  console.log("game delete button worked");
+  gameDelete();
+})
+
+$studioDelete.click(function(){
+  console.log("studio delete button worked");
+  studioDelete();
+})
+
 function studioSearch(){
     let userInput = $("#userInput").val();
     
@@ -136,5 +146,50 @@ function studioAdd(){
   };
   studioAdded.send(JSON.stringify(studioTotal));
   }
-  
+}
+
+
+function gameDelete(){
+  let userInput = $("#gameInput").val();
+  console.log(userInput);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('DELETE', `https://no-hope-web-services.onrender.com/api/games/${userInput}`);
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        // Handle the server's response here
+        console.log(xhr.responseText);
+      } else {
+        // Handle errors here
+        console.error(xhr.statusText);
+      }
+    };
+    xhr.onerror = function() {
+    // Handle network errors here
+    console.error(xhr.statusText);
+    };
+    xhr.send();
+}
+
+function studioDelete(){
+  let userInput = $("#studioInput").val();
+  console.log(userInput);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('DELETE', `https://no-hope-web-services.onrender.com/api/studio/${userInput}`);
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        // Handle the server's response here
+        console.log(xhr.responseText);
+      } else {
+        // Handle errors here
+        console.error(xhr.statusText);
+      }
+    };
+    xhr.onerror = function() {
+    // Handle network errors here
+    console.error(xhr.statusText);
+    };
+    xhr.send();
+
 }
