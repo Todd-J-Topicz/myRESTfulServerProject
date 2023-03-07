@@ -75,7 +75,7 @@ function gameSearch(){
             $h2.append($h3);
 
             let $h4 = $('<h4 class="game-studio"></h4>');
-            $($h4).text(data[x].studio_id);
+            $($h4).text(data[x].studio_name);
             $h2.append($h4);
 
             $span.appendTo($("#results"));
