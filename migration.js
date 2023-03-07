@@ -11,9 +11,8 @@ function runMigrations(pool, callback){
             return done();
         }
         //RUN migration SQL:
-        pool.query('DROP TABLE IF EXISTS games;');
-        pool.query('DROP TABLE IF EXISTS studio;')
-        
+        pool.query('DROP TABLE IF EXISTS games; DROP TABLE IF EXISTS studio');
+                
         pool.query(`CREATE TABLE studio (
             id SERIAL PRIMARY KEY,
 	        name VARCHAR (100) NOT NULL)`, (err, data) => {
