@@ -110,7 +110,10 @@ function gameAdd(){
 
 function studioAdd(){
   let studioName = prompt("Enter the name of the studio.");
-  alert(`Studio has been added! Title: ${studioName}`);
+  if (studioName === ""){
+    alert("Has not been added")
+  } else{
+    alert(`Studio has been added! Title: ${studioName}`);
   let studioTotal = {
     "name":studioName, 
   };
@@ -132,5 +135,6 @@ function studioAdd(){
   studioAdded.onerror = function() {
   };
   studioAdded.send(JSON.stringify(studioTotal));
-
+  }
+  
 }

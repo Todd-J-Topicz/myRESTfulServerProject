@@ -158,7 +158,7 @@ app.delete('/api/games/:id', (req, res, next) => {
     })    
 });
 
-app.post('/api/studio/', (req, res, next) =>{
+app.post('/api/studio', (req, res, next) =>{
     //console.log("made it inside post request");
     const name = req.body.name;
    
@@ -172,7 +172,7 @@ app.post('/api/studio/', (req, res, next) =>{
         }
 
         let studioInfo = result.rows[0];
-        res.send(gameInfo);
+        res.send(studioInfo);
     })
 })
 

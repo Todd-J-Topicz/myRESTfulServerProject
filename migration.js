@@ -11,13 +11,14 @@ function runMigrations(pool, callback){
             return done();
         }
         //RUN migration SQL:
-        pool.query('DROP TABLE IF EXISTS games');
+        pool.query('DROP TABLE IF EXISTS games;');
+        pool.query('DROP TABLE IF EXISTS studio;')
         
-        pool.query(`CREATE TABLE IF NOT EXISTS studio (
+        pool.query(`CREATE TABLE studio (
             id SERIAL PRIMARY KEY,
 	        name VARCHAR (100) NOT NULL)`, (err, data) => {
                 if (err) {
-                    console.log("CREATE TABLE studios FAILED")
+                    console.log("CREATE TABLE studio FAILED")
                 } else {
                     console.log("studios CREATE TABLE successful")
                 }
