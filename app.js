@@ -20,6 +20,11 @@ $gameAdd.click(function(){
   gameAdd();
 })
 
+$studioAdd.click(function(){
+  console.log("studio add button worked");
+  studioAdd();
+})
+
 function studioSearch(){
     let userInput = $("#userInput").val();
     
@@ -72,17 +77,60 @@ function gameSearch(){
 
 function gameAdd(){
   let gameName = prompt("Enter the title of the game.");
-  let gameYear = prompt(`Title: ${gameName} [Enter the year the game was released.]`);
-  let gameStudio = prompt(`Title: ${gameName}, Year: ${gameYear} [Enter the name of the studio.]`);
-  let gameInfo = alert(`Game has been added! Title: ${gameName}, Year: ${gameYear}, Studio: ${gameStudio}`)
-  let gameTotal = JSON.stringify({
+  let gameYear = Number.parseInt(prompt(`Title: ${gameName} [Enter the year the game was released.]`));
+  let gameStudio = Number.parseInt(prompt(`Title: ${gameName}, Year: ${gameYear} [Enter the name of the studio.]`));
+  alert(`Game has been added! Title: ${gameName}, Year: ${gameYear}, Studio: ${gameStudio}`)
+  let gameTotal = {
     "name":gameName, 
     "year": gameYear, 
     "studio_id": gameStudio
-  });
+  };
+  console.log("gameTotal:" , gameTotal)
 
 
-  $.post("https://no-hope-web-services.onrender.com/api/games", gameTotal , function(res){
-    $("#results").html(res)
-  }, "json")
-};
+  var gameAdded = new XMLHttpRequest();
+  gameAdded.open('POST', "https://no-hope-web-services.onrender.com/api/games");
+  gameAdded.setRequestHeader('Content-Type', 'application/json');
+  gameAdded.onload = function() {
+    if (gameAdded.status === 200) {
+      // Handle the server's response here
+      console.log(gameAdded.responseText);
+    } else {
+      // Handle errors here
+      console.error(gameAdded.statusText);
+    }
+  };
+  gameAdded.onerror = function() {
+    // Handle network errors here
+    console.error(gameAdded.statusText);
+  };
+  gameAdded.send(JSON.stringify(gameTotal));
+  };
+
+
+function studioAdd(){
+  let studioName = prompt("Enter the name of the studio.");
+  alert(`Studio has been added! Title: ${studioName}`);
+  let studioTotal = {
+    "name":studioName, 
+  };
+  console.log("studioTotal:" , studioTotal)
+
+
+  var studioAdded = new XMLHttpRequest();
+  studioAdded.open('POST', "https://no-hope-web-services.onrender.com/api/studio");
+  studioAdded.setRequestHeader('Content-Type', 'application/json');
+  studioAdded.onload = function() {
+    if (studioAdded.status === 200) {
+      // Handle the server's response here
+      console.log(studioAdded.responseText);
+    } else {
+      // Handle errors here
+      console.error(studioAdded.statusText);
+    }
+  };
+  studioAdded.onerror = function() {
+  };
+  studioAdded.send(JSON.stringify(studioTotal));
+
+}
