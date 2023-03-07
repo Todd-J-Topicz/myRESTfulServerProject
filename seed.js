@@ -17,7 +17,7 @@ function runSeeder(pool, callback){
             ('Activision'),
             ('Bethesda Softworks'),
             ('Bungie'),
-            ('Massive Entertainment')`,
+            ('Massive Entertainment');`,
             (err, data) => {
                 if (err){
                     console.log("INSERT FAILED on studio")
