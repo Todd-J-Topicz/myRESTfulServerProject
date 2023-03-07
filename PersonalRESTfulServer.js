@@ -91,7 +91,7 @@ app.post('/api/games/', (req, res, next) =>{
     const year = Number.parseInt(req.body.year);
     //console.log(year);
     const studio_id = Number.parseInt(req.body.studio_id);
-    //console.log(studio_id);
+    console.log(req.body);
 
     if (!name || !year || !studio_id || Number.isNaN(year)){
         return res.status(400).send("Error in post data, or insufficient data provided for post");

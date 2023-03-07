@@ -1,5 +1,9 @@
 const $studioSearch = $('#studioSearch');
 const $gameSearch = $('#gameSearch');
+const $gameAdd = $('#addGame');
+const $studioAdd = $('#addStudio');
+const $gameDelete = $('#deleteGame');
+const $studioDelete = $('#deleteStudio');
 
 $studioSearch.click(function(){
     console.log("studio click works");
@@ -10,6 +14,11 @@ $studioSearch.click(function(){
     console.log("game click works");
     gameSearch();
   });
+
+$gameAdd.click(function(){
+  console.log("add game click works")
+  gameAdd();
+})
 
 function studioSearch(){
     let userInput = $("#userInput").val();
@@ -60,3 +69,20 @@ function gameSearch(){
     });
 };
 
+
+function gameAdd(){
+  let gameName = prompt("Enter the title of the game.");
+  let gameYear = prompt(`Title: ${gameName} [Enter the year the game was released.]`);
+  let gameStudio = prompt(`Title: ${gameName}, Year: ${gameYear} [Enter the name of the studio.]`);
+  let gameInfo = alert(`Game has been added! Title: ${gameName}, Year: ${gameYear}, Studio: ${gameStudio}`)
+  let gameTotal = JSON.stringify({
+    "name":gameName, 
+    "year": gameYear, 
+    "studio_id": gameStudio
+  });
+
+
+  $.post("https://no-hope-web-services.onrender.com/api/games", gameTotal , function(res){
+    $("#results").html(res)
+  }, "json")
+};
