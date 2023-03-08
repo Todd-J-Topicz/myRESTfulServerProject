@@ -13,25 +13,29 @@
   <video id="background-video" autoplay loop muted>
     <source src="pexels-cottonbro-9669111.mp4" type="video/mp4">
     </video>
-    <div id = 'searchButtons'>
-      <button id = 'gameSearch'>Show Games</button>
-      <button id = 'studioSearch'>Show Studios</button>
-    </div>
-    <div id = 'addButtons'>
-      <button id = 'addGame'>Add A Game</button>
-      <button id = 'addStudio'>Add A Studio</button>
-    </div>
-    <div id = 'deleteButtons'>
-      <button id ='deleteGame'>Delete A Game</button>
-      <input id="gameInput" type="text" name='search'>
-      <button id ='deleteStudio'>Delete A Studio</button>
-      <input id="studioInput" type="text" name='search'>
-    </div>
-    <div id = 'results'>
-      <span>
-        <h1>Results</h1>
-        <p>list of games or studios</p>
-      </span>
+    <div id="total">
+      <div id="buttonsContainer">
+        <div id = 'searchButtons'>
+          <button id = 'gameSearch'>Show Games</button>
+          <button id = 'studioSearch'>Show Studios</button>
+        </div>
+        <div id = 'addButtons'>
+          <button id = 'addGame'>Add A Game</button>
+          <button id = 'addStudio'>Add A Studio</button>
+        </div>
+        <div id = 'deleteButtons'>
+          <button id ='deleteGame'>Delete selected Game</button>
+          <select id="myDropDown"></select>
+          <button id ='deleteStudio'>Delete selected Studio</button>
+          <select id="myDropDownStudio"></select>
+        </div>
+      </div>
+      <div id = 'results'>
+        <span>
+          <h1>Welcome!</h1>
+          <p>No results are currently showing, please select an option above</p>
+        </span>
+      </div>
     </div>
 </body>
 </html>

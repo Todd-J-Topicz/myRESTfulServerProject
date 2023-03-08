@@ -5,6 +5,9 @@ const $studioAdd = $('#addStudio');
 const $gameDelete = $('#deleteGame');
 const $studioDelete = $('#deleteStudio');
 
+let dropDownValueGame = null;
+let dropDownValueStudio = null;
+
 $studioSearch.click(function(){
     console.log("studio click works");
     studioSearch();
@@ -51,8 +54,29 @@ function studioSearch(){
             $span.append($h2);
 
             $span.appendTo($('#results'));
-            
-        }  
+        }
+        
+        //THIS IS ALL FOR CREATING THE DROPDOWN BAR FOR DELETE REQUEST:
+        //Place Game data into a toolbar, using DATA from above:
+        const dropdown = document.getElementById("myDropDownStudio");
+
+        //Clears dropdown bar if anything exists in it:
+        while (dropdown.firstChild) {
+          dropdown.removeChild(dropdown.firstChild);
+        }
+        //Create values in the dropdown:
+        for (let x = 0; x < data.length;x++){
+          const option = document.createElement("option");
+          option.text = data[x].name;
+          option.value = data[x].id;
+          dropdown.appendChild(option);
+        }
+
+        dropdown.addEventListener("change", () => {
+          dropDownValueStudio = dropdown.value;
+          console.log("dropdown value:", dropDownValueStudio)
+        })
+
     });
 };
 
@@ -81,8 +105,28 @@ function gameSearch(){
             $span.appendTo($("#results"));
         }
 
-        //Place Game data into a toolbar, using DATA from above
+        //THIS IS ALL FOR CREATING THE DROPDOWN BAR FOR DELETE REQUEST:
+        //Place Game data into a toolbar, using DATA from above:
+        const dropdown = document.getElementById("myDropDown");
 
+        //Clears dropdown bar if anything exists in it:
+        while (dropdown.firstChild) {
+          dropdown.removeChild(dropdown.firstChild);
+        }
+        //Create values in the dropdown:
+        for (let x = 0; x < data.length;x++){
+          const option = document.createElement("option");
+          option.text = data[x].name;
+          option.value = data[x].id;
+          dropdown.appendChild(option);
+        }
+
+        dropdown.addEventListener("change", () => {
+          dropDownValue = dropdown.value;
+          console.log("dropdown value:", dropDownValue)
+        })
+       
+        
     });
 };
 
@@ -152,13 +196,8 @@ function studioAdd(){
 
 
 function gameDelete(){
-  //Have to do an AJAX GET to games table, get data and map selected game to proper game_id to run delete below:
-
-  let userInput = $("#gameInput").val();
-  console.log(userInput);
-
     var xhr = new XMLHttpRequest();
-    xhr.open('DELETE', `https://no-hope-web-services.onrender.com/api/games/${userInput}`);
+    xhr.open('DELETE', `https://no-hope-web-services.onrender.com/api/games/${dropDownValueGame}`);
     xhr.onload = function() {
       if (xhr.status === 200) {
         // Handle the server's response here
@@ -176,11 +215,8 @@ function gameDelete(){
 }
 
 function studioDelete(){
-  let userInput = $("#studioInput").val();
-  console.log(userInput);
-
     var xhr = new XMLHttpRequest();
-    xhr.open('DELETE', `https://no-hope-web-services.onrender.com/api/studio/${userInput}`);
+    xhr.open('DELETE', `https://no-hope-web-services.onrender.com/api/studio/${dropDownValueStudio}`);
     xhr.onload = function() {
       if (xhr.status === 200) {
         // Handle the server's response here
