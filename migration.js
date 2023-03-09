@@ -11,7 +11,7 @@ function runMigrations(pool, callback){
             return done();
         }
         //RUN migration SQL:
-        pool.query('DROP TABLE games; DROP TABLE studio', (err) =>{
+        pool.query('DROP TABLE IF EXISTS games; DROP TABLE IF EXISTS studio', (err) =>{
             if (err){
                 console.log(err);
             }
